@@ -5,5 +5,5 @@ set -eufo pipefail
 {{ if eq .chezmoi.os "darwin" -}}
 chsh -s /bin/zsh
 {{ else if eq .chezmoi.os "linux" -}}
-chsh -s /usr/bin/zsh
+sudo chsh -s $(which zsh) $(whoami)
 {{ end -}}
