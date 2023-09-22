@@ -1,0 +1,13 @@
+{{ if eq .chezmoi.os "darwin" -}}
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="/opt/homebrew/bin:$PATH"
+{{ end -}}
+{{ if eq (index . "isDev") true -}}
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$HOME/.zig-head"
+{{ end -}}
+
+export EDITOR="code --wait"
+{{ if eq .chezmoi.os "darwin" -}}
+export FZF_BASE="/opt/homebrew/opt/fzf"
+{{ end -}}

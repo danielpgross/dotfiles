@@ -1,0 +1,20 @@
+{{ if eq .chezmoi.os "darwin" -}}
+genpw() {
+  pwgen -cnyB1 ${1:-16} -r \"\'\[\]\{\}\\\` | tr -d '\n' | pbcopy
+  _tmp=`pbpaste`
+  echo "$_tmp (copied to clipboard)"
+}
+{{ end -}}
+
+shrinkpdf() {
+  TMPPDF_FILENAME="orig_${1}"
+  cp "${1}" "$TMPPDF_FILENAME"
+  gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile="${1}" "$TMPPDF_FILENAME"
+  echo "$(du -sh "$TMPPDF_FILENAME" | cut -f1) -> $(du -sh "${1}" | cut -f1)"
+  rm "$TMPPDF_FILENAME"
+}
+
+decryptpdf() {
+  echo "Enter password followed by <enter> followed by <ctrl-D>"
+  qpdf --decrypt --password-file=- --replace-input "${1}"
+}

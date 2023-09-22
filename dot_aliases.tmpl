@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "darwin" -}}
+alias sshfs="sshfs -o auto_cache,reconnect,defer_permissions,noappledouble,ServerAliveInterval=15,ServerAliveCountMax=3"
+alias catpdf="find . -type f -printf '%f\n' | sort -n | sed ':a;N;$!ba;s/\n/ /g' | xargs /System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py --output all.pdf"
+alias setvol="osascript -e \"set Volume 0.1\""
+{{ end -}}
+alias ls="ls --color=auto"

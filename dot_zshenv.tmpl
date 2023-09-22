@@ -1,0 +1,4 @@
+. ~/.exports
+{{ if eq (index . "isDev") true -}}
+. "$HOME/.cargo/env"
+{{ end -}}
