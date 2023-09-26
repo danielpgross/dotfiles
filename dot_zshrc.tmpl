@@ -17,13 +17,12 @@ source $ZSH/oh-my-zsh.sh
 . ~/.functions
 . ~/.aliases
 
-# Show only current directory in terminal title
-ZSH_THEME_TERM_TAB_TITLE_IDLE="%~"
-ZSH_THEME_TERM_TITLE_IDLE="%~"
-
-function set-title {
-  DISABLE_AUTO_TITLE="true"
-  title $1
+function omz_termsupport_precmd {
+  if [[ -n $SSH_CLIENT ]]; then
+    title "%m:%~"
+  else
+    title "%~"
+  fi
 }
 
 # Disable history sharing between sessions
