@@ -6,9 +6,9 @@ set -eufo pipefail
 echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ stable main" | sudo tee /etc/apt/sources.list.d/azlux.list
 sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg
 EXPECTED_FINGERPRINT="98B824A5FA7D3A10FDB225B7CA548A0A0312D8E6"
-ACTUAL_FINGERPRINT=$(gpg --show-keys --with-fingerprint /usr/share/keyrings/azlux-archive-keyring.gpg | grep -Eo '([0-9A-F]{4} ?){10}' | tr -d ' ')
+ACTUAL_FINGERPRINT=$(gpg --show-keys --with-fingerprint /usr/share/keyrings/azlux-archive-keyring.gpg | grep -Eo '([0-9A-F]{4} ? ?){10}' | tr -d ' ')
 
-if [ "$ACTUAL_FINGERPRINT" -ne "$EXPECTED_FINGERPRINT" ]; then
+if [ "$ACTUAL_FINGERPRINT" != "$EXPECTED_FINGERPRINT" ]; then
   echo "error: azlux repo fingerprint does not match expected value."
   exit 1
 fi
