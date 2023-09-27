@@ -1,0 +1,21 @@
+[user]
+  name = Daniel Gross
+  email = daniel@dgross.ca
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG3uF2SCG2ogRPQI6GBTlTQePxjvoTHZjwanF87LS2s0
+
+[core]
+  autocrlf = input
+
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
+
+{{ if eq .chezmoi.os "darwin" -}}
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{ end }}
