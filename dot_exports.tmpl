@@ -7,7 +7,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.zig-head"
 {{ end -}}
 
-export EDITOR="code --wait"
+export EDITOR="micro"
 {{ if eq .chezmoi.os "darwin" -}}
 export FZF_BASE="/opt/homebrew/opt/fzf"
 {{ end -}}
