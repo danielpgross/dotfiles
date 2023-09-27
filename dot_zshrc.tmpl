@@ -42,3 +42,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 {{ end -}}
+
+# br convenience function for broot
+function br {
+  local cmd cmd_file code
+  cmd_file=$(mktemp)
+  if broot --outcmd "$cmd_file" "$@"; then
+    cmd=$(<"$cmd_file")
+    command rm -f "$cmd_file"
+    eval "$cmd"
+  else
+    code=$?
+    command rm -f "$cmd_file"
+    return "$code"
+  fi
+}

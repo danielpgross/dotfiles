@@ -15,5 +15,5 @@ unzip ${TMP_DIR}/${FILENAME}.zip -d $EXTRACTION_DIR
 sudo cp ${EXTRACTION_DIR}/$(uname -m)-unknown-linux-gnu/broot /usr/local/bin/
 sudo chmod +x /usr/local/bin/broot
 rm -rf $TMP_DIR
-
+broot --set-install-state installed
 {{- end -}}
