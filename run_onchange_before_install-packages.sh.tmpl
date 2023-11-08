@@ -16,6 +16,6 @@ sudo apt-get install -y \
   zsh \
   lnav
 
-sudo snap install fx
+sudo snap install fx || true # Ignore failure in case snapd isn't available
 
 {{ end -}}
