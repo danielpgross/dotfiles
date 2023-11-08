@@ -2,3 +2,6 @@
 .oh-my-zsh/custom/themes/powerlevel10k/gitstatus
 .oh-my-zsh/custom/themes/powerlevel10k/internal
 .oh-my-zsh/custom/themes/powerlevel10k/**/*.zwc
+{{- if eq (env "SPIN") "1" }}
+.gitconfig
+{{- end }}
