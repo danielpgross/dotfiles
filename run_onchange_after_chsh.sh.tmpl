@@ -7,3 +7,5 @@ chsh -s /bin/zsh
 {{ else if eq .chezmoi.os "linux" -}}
 sudo chsh -s $(which zsh) $(whoami)
 {{ end -}}
+
+exec zsh
