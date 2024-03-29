@@ -4,7 +4,7 @@
 add_newline = false
 
 format = '''
-$all$fill $time
+$all$fill $username$hostname $time
 $character'''
 
 [time]
@@ -27,5 +27,16 @@ truncate_to_repo = false
 [ruby]
 detect_variables = []
 
+[python]
+detect_extensions = []
+
 [nodejs]
 symbol = "[⬢](bold green) "
+
+[hostname]
+format = '[@$hostname]($style)'
+style = 'none'
+
+[username]
+format = '[$user]($style)'
+style_user = 'none'
