@@ -1,0 +1,31 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = '''
+$all$fill $time
+$character'''
+
+[time]
+disabled = false
+time_format = '%H:%M:%S %b%e'
+style = '66'
+format = '[$time]($style) '
+
+[fill]
+symbol = '·'
+style = 'dimmed'
+
+[line_break]
+disabled = true
+
+[directory]
+style = '31'
+truncate_to_repo = false
+
+[ruby]
+detect_variables = []
+
+[nodejs]
+symbol = "[⬢](bold green) "

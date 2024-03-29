@@ -1,39 +1,22 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-export ZSH=$HOME/.oh-my-zsh
-
-# Disable oh-my-zsh auto-updates
-zstyle ':omz:update' mode disabled
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git fzf)
-source $ZSH/oh-my-zsh.sh
-
 . ~/.functions
 . ~/.aliases
+. ~/.exports
 
-function omz_termsupport_precmd {
+eval "$(starship init zsh)"
+
+function set_win_title(){
   if [[ -n $SSH_CLIENT ]]; then
-    title "%m:%~"
+    print -Pn "\e]1;%m:%~\a"
   else
-    title "%~"
+    print -Pn "\e]1;%~\a"
   fi
 }
-
-# Disable history sharing between sessions
-unsetopt share_history
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+precmd_functions+=(set_win_title)
 
 {{ if and (eq .chezmoi.os "darwin") (eq (index . "isDev") true) -}}
 # chruby
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+chruby ruby-3
 {{ end -}}
 
 {{ if eq (index . "isDev") true -}}
@@ -57,3 +40,9 @@ function br {
     return "$code"
   fi
 }
+
+{{ if eq .chezmoi.os "darwin" -}}
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{ else if eq .chezmoi.os "linux" -}}
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{ end -}}

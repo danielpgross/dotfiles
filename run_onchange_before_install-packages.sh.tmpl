@@ -3,6 +3,8 @@ set -eufo pipefail
 
 {{ if eq .chezmoi.os "linux" -}}
 
+mkdir -p ~/.local/bin && curl -sS https://starship.rs/install.sh | sh -s -- -b ~/.local/bin
+
 while sudo fuser /var/lib/apt/lists/lock >/dev/null 2>%1; do
   sleep 1
 done
@@ -18,7 +20,8 @@ sudo apt-get install -y \
   ripgrep \
   micro \
   zsh \
-  lnav
+  lnav \
+  zsh-syntax-highlighting
 
 sudo snap install fx || true # Ignore failure in case snapd isn't available
 
