@@ -1,4 +1,4 @@
 . ~/.exports
-{{ if eq (index . "isDev") true -}}
+{{ if eq .chezmoi.os "linux" -}}
 . "$HOME/.cargo/env"
 {{ end -}}

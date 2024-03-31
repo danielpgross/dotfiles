@@ -1,7 +1,12 @@
 #!/bin/bash
 set -eufo pipefail
 
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile=minimal
+
 {{ if eq .chezmoi.os "linux" -}}
+# These are all managed by Homebrew on macOS
+
+cargo install --locked broot atuin
 
 mkdir -p ~/.local/bin && curl -sS https://starship.rs/install.sh | sh -s -- -b ~/.local/bin
 

@@ -46,3 +46,5 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{ else if eq .chezmoi.os "linux" -}}
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{ end -}}
+
+eval "$(atuin init zsh --disable-up-arrow)"
