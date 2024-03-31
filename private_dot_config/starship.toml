@@ -4,7 +4,7 @@
 add_newline = false
 
 format = '''
-$all$fill $username$hostname $time
+$all$fill $cmd_duration$username$hostname$time
 $character'''
 
 [time]
@@ -23,6 +23,7 @@ disabled = true
 [directory]
 style = '31'
 truncate_to_repo = false
+truncation_length = 0
 
 [ruby]
 detect_variables = []
@@ -34,9 +35,14 @@ detect_extensions = []
 symbol = "[⬢](bold green) "
 
 [hostname]
-format = '[@$hostname]($style)'
-style = 'none'
+format = '[@$hostname]($style) '
+style = '180'
+
+[cmd_duration]
+format = '[$duration]($style) '
+style = '101'
 
 [username]
 format = '[$user]($style)'
-style_user = 'none'
+style_user = '180'
+style_root = '178'
