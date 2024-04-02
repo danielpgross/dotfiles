@@ -6,9 +6,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profil
 {{ if eq .chezmoi.os "linux" -}}
 # These are all managed by Homebrew on macOS
 
-cargo install --locked broot atuin
-
-mkdir -p ~/.local/bin && curl -sS https://starship.rs/install.sh | sh -s -- -b ~/.local/bin
+cargo install --locked broot atuin starship
 
 while sudo fuser /var/lib/apt/lists/lock >/dev/null 2>%1; do
   sleep 1
@@ -17,6 +15,7 @@ done
 sudo apt-get update
 sudo apt-get install -y \
   build-essential \
+  cmake \
   curl \
   direnv \
   fzf \
